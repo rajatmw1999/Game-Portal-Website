@@ -20,17 +20,31 @@
 //         console.log("-1");
 //       }
 // });
-
-var clicked = 0;
-
+$("#scoreDisplay").hide();
+$(".playButtons").hide();
+var increment =5;
+var decrement =1;
+var level = 0;
+var score = 0;
+var health = 5;
+  var answer;
 $(document).keypress(function() {
-  play();
+  if(level===0)
+    {play();
+    $("#scoreDisplay").show();
+      $(".playButtons").hide();
+    }
 });
-
+//
 function play() {
-  ++clicked;
+  ++level;
+  $("#levelDisplay").html("Level : "+level);
+  $("#healthDisplay").html("Health : "+health);
+  // $("#levelDisplay").html("Level : " + level);
+  //array of colors
   var color = ["VIOLET", "BLUE", "GREEN", "YELLOW", "ORANGE", "RED"];
 
+  //random number to ensure that a TRUE condition occurs randomly
   var ensureTheSame = Math.random();
   ensureTheSame = ensureTheSame * 20;
   ensureTheSame = Math.floor(ensureTheSame);
@@ -49,6 +63,7 @@ function play() {
   pos2 = pos2 * 6;
   pos2 = Math.floor(pos2);
 
+  //animation of the gameboard
   $(".playButtons").hide();
   $(".game-board").slideUp();
   setTimeout(function() {
@@ -61,7 +76,8 @@ function play() {
 
   var iconClasses = ["fas fa-circle", "fas fa-stop", "fas fa-caret-up", "fas fa-apple-alt", "fas fa-star", "fas fa-heart"];
 
-  var answer = (pos == pos2);
+  //answer variable is to check whether the appered name and the color of the shape are same.
+
 
   setTimeout(function() {
     if (pos1 === 2) {
@@ -71,27 +87,62 @@ function play() {
     }
     if (ensureTheSame < 6) {
       $("#shape-that-appears").css("color", color[pos]);
-      answer = true;
     } else {
       $("#shape-that-appears").css("color", color[pos2]);
-      answer = (pos == pos2);
     }
   }, 400);
 
-
-  document.querySelector("#tick").addEventListener("click", function(event) {
-
-    if (answer === true)
-      console.log(clicked, " +5");
-    else {
-      console.log(clicked, " -1");
-    }
-  });
-  document.querySelector("#cross").addEventListener("click", function(event) {
-    if (answer === false)
-      console.log(clicked, " +5");
-    else {
-      console.log(clicked, " -1");
-    }
-  });
+if(ensureTheSame<6)
+  answer=true;
+else if(pos===pos2){
+  answer=true;
 }
+else if(pos!=pos2)
+answer = false;
+}
+//end of the function play()..
+
+
+$("#tick").click(function(){
+  if (answer == true){
+    score+=increment;
+    $("#scoreDisplay").html("Score : " + score);
+    $("#levelDisplay").addClass("right");
+    setTimeout(function(){
+      $("#levelDisplay").removeClass("right");
+    },300);
+  }
+  else if(answer==false){
+  score-=decrement;
+  health-=1;
+  $("#scoreDisplay").html("Score : " + score);
+  $("#levelDisplay").addClass("wrong");
+  setTimeout(function(){
+    $("#levelDisplay").removeClass("wrong");
+  },300);
+}
+if(level!=0)
+  play();
+}
+  );
+  $("#cross").click(function(){
+    if (answer == false){
+      score+=increment;
+      $("#scoreDisplay").html("Score : " + score);
+      $("#levelDisplay").addClass("right");
+      setTimeout(function(){
+        $("#levelDisplay").removeClass("right");
+      },300);
+    }
+    else if(answer == true){
+    score-=decrement;
+    health-=1;
+    $("#scoreDisplay").html("Score : " + score);
+    $("#levelDisplay").addClass("wrong");
+    setTimeout(function(){
+      $("#levelDisplay").removeClass("wrong");
+    },300);
+    }
+    if(level!=0)
+    play();
+  });

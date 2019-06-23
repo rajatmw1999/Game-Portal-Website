@@ -1,0 +1,85 @@
+/* Modifying top container div */
+
+.top{
+  background-color : #222831;
+  color: #00adb5;
+  text-align: center;
+  padding: 3% 0 5% 0;
+  font-family: 'Lobster';
+}
+
+#top-heading{
+  font-size: 4rem;
+  color: #eeeeee;
+  padding:20px;
+  text-shadow: 2px 2px 2px green;
+}
+
+#tag-line{
+  padding-left: 240px;
+}
+
+.fa-fire{
+  color:#ffde7d;
+  text-shadow: 2px 2px 2px red;
+}
+
+/* End of the top container div */
+
+
+/* Middle container div modified */
+.games-leftbar{
+  text-align:left;
+}
+
+.socials-rightbar{
+  text-align:right;
+}
+
+
+.fa-twitter{
+  color:lightblue;
+}
+
+.fa-facebook-f{
+  color:darkblue;
+}
+
+.fa-instagram{
+  color:purple;
+}
+
+.fa-envelope{
+  color:#393e46;
+}
+
+/* Applying black color to social icons if we hover on them */
+.social-icon:hover{
+  color:black;
+}
+
+.game-board{
+  height:30rem;
+  widht:6rem;
+  box-shadow: 0 0 3px 3px #00adb5;
+  margin-top: 50px;
+  background-color: #eeeeee;
+  text-align:center;
+}
+
+
+#display-color-name{
+  padding: 20px;
+  font-size:3rem;
+  font-family: 'Arvo';
+  font-weight: bold;
+}
+
+#shape-that-appears{
+  padding: 40px;
+}
+
+.playButtons{
+  padding:15px 30px;
+  margin: 10px;
+}
